@@ -18,7 +18,7 @@ class ProductList extends Component {
     }
 }
 
-// Using the `mapStateToProps` function, filter the array stored in the 
+// Using the `mapStateToProps` function, filter the array stored in the
 // state `products` property based on 3 criterea:
 // - `underTwenty`
 // - `overTwenty`
@@ -26,12 +26,12 @@ class ProductList extends Component {
 const mapStateToProps = function(state) {
     let products;
     // complete the `if else` statement including conditions and `products` value
-    if () {
-
-    } else if () {
-
+    if (state === 'underTwenty') {
+      console.log("under twenty")
+    } else if (state === 'overTwenty') {
+      console.log("over twenty")
     } else {
-
+      console.log("everything else")
     }
 
     return {products: products}
