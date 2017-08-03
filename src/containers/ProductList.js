@@ -12,7 +12,11 @@ class ProductList extends Component {
         // applied to the component as a `product` property
         return (
             <ul className="ProductList">
-
+              {products.map(product =>{
+                return(
+                <Product key = {product.listing_id} product = {product}/>
+              )
+              })}
             </ul>
         );
     }
@@ -24,17 +28,20 @@ class ProductList extends Component {
 // - `overTwenty`
 // - `all` or the default
 const mapStateToProps = function(state) {
-    let products;
-    // complete the `if else` statement including conditions and `products` value
-    if (state === 'underTwenty') {
-      console.log("under twenty")
-    } else if (state === 'overTwenty') {
-      console.log("over twenty")
-    } else {
-      console.log("everything else")
-    }
+  let products = state.products
+  // complete the `if else` statement including conditions and `products` value
+  if (state.filter === 'underTwenty') {
+    products = products.filter(product=>{
+      return parseFloat(product.price)<20
+    })
 
-    return {products: products}
+  } else if (state.filter === 'overTwenty') {
+    products = products.filter(product=>{
+      return parseFloat(product.price)>20
+    })
+
+  }
+  return {products: products}
 }
 
 export default connect(mapStateToProps)(ProductList);

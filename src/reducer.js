@@ -7,7 +7,7 @@ import products from './data/products';
 // The state will also require a property for the current state of filterable data
 const initialState = {
   products: products,
-  filteredProducts: [],
+  filter:""
 
 }
 
@@ -15,13 +15,20 @@ const initialState = {
 // Provide the reducer function delration with the necessary parameters
 // Give the `state` parameter a default value of `initialState`
 const reducer = function(state = initialState, action) {
-    // When a `FILTER_PRODUCTS` is provided, return a new state
-    // Be sure not to mutate state
-    // Use the `update` operator provided by `immutability-helper`
-    // to update the the state property describing current state of filterable data
-    // provided by the `action.payload`
-    console.log(state);
-    return state
+  // When a `FILTER_PRODUCTS` is provided, return a new state
+  // Be sure not to mutate state
+  // Use the `update` operator provided by `immutability-helper`
+  // to update the the state property describing current state of filterable data
+  // provided by the `action.payload`
+
+  if(action.type === FILTER_PRODUCTS){
+    state.filter = action.payload
+    return Object.assign({}, {
+      filter: action.payload,
+      products: state.products
+    })
+  }
+  return state
 }
 
 export default reducer;
